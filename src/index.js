@@ -29,6 +29,7 @@ try {
   const failureText = envsubst(core.getInput('failure_text'))
   const cancelledText = envsubst(core.getInput('cancelled_text'))
   const fields = JSON.parse(envsubst(core.getInput('fields')) || '[]')
+  const custom_fields = JSON.parse(envsubst(core.getInput('custom_fields')) || '{}')
 
   let color = envsubst(core.getInput('color'))
   let text = envsubst(core.getInput('text'))
@@ -53,20 +54,18 @@ try {
       text = cancelledText || 'No cancelled text specified.'
     }
   }
+  
+  custom_fields.text = text
+  custom_fields.color = color
+  custom_fields.fields = fields
+  custom_fields.fallback = text
 
   // Send the notification
   ;(async () => {
     await slack.send({
       channel,
       username,
-      attachments: [
-        {
-          fallback: text,
-          text,
-          color,
-          fields
-        }
-      ]
+      attachments: [custom_fields]
     })
   })()
 } catch (error) {
