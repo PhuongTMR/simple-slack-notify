@@ -56,9 +56,7 @@ try {
   
   custom_fields.text = text
   custom_fields.color = color
-  custom_
-    
-    .fallback = text
+  custom_fields.fallback = text
 
   // Send the notification
   ;(async () => {
