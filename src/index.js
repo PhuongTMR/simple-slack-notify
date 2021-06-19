@@ -28,7 +28,6 @@ try {
   const successText = envsubst(core.getInput('success_text'))
   const failureText = envsubst(core.getInput('failure_text'))
   const cancelledText = envsubst(core.getInput('cancelled_text'))
-  const fields = JSON.parse(envsubst(core.getInput('fields')) || '[]')
   const custom_fields = JSON.parse(envsubst(core.getInput('custom_fields')) || '{}')
 
   let color = envsubst(core.getInput('color'))
@@ -57,8 +56,9 @@ try {
   
   custom_fields.text = text
   custom_fields.color = color
-  custom_fields.fields = fields
-  custom_fields.fallback = text
+  custom_
+    
+    .fallback = text
 
   // Send the notification
   ;(async () => {
