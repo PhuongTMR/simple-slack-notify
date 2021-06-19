@@ -43,7 +43,7 @@ inputs:
     description: The message to send if status is cancelled
     default: ''
     required: false
-  fields:
+  custom_fields:
     description: 'JSON string containing an array of fields to attach to the notification'
     default: '[]'
     required: false
